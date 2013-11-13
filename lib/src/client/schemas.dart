@@ -2088,6 +2088,9 @@ class Instance {
   /** Array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Currently, ONE_TO_ONE_NAT is the only access config supported. If there are no accessConfigs specified, then this instance will have no external internet access. */
   core.List<NetworkInterface> networkInterfaces;
 
+  /** Scheduling options for this instance. */
+  Scheduling scheduling;
+
   /** Server defined URL for this resource (output only). */
   core.String selfLink;
 
@@ -2143,6 +2146,9 @@ class Instance {
     }
     if (json.containsKey("networkInterfaces")) {
       networkInterfaces = json["networkInterfaces"].map((networkInterfacesItem) => new NetworkInterface.fromJson(networkInterfacesItem)).toList();
+    }
+    if (json.containsKey("scheduling")) {
+      scheduling = new Scheduling.fromJson(json["scheduling"]);
     }
     if (json.containsKey("selfLink")) {
       selfLink = json["selfLink"];
@@ -2203,6 +2209,9 @@ class Instance {
     }
     if (networkInterfaces != null) {
       output["networkInterfaces"] = networkInterfaces.map((networkInterfacesItem) => networkInterfacesItem.toJson()).toList();
+    }
+    if (scheduling != null) {
+      output["scheduling"] = scheduling.toJson();
     }
     if (selfLink != null) {
       output["selfLink"] = selfLink;
@@ -4616,6 +4625,44 @@ class RouteList {
   }
 
   /** Return String representation of RouteList */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** Scheduling options for an Instance. */
+class Scheduling {
+
+  /** Whether the Instance should be automatically restarted whenever it is terminated by Compute Engine (not terminated by user). */
+  core.bool automaticRestart;
+
+  /** How the instance should behave when the host machine undergoes maintenance that may temporarily impact instance performance. */
+  core.String onHostMaintenance;
+
+  /** Create new Scheduling from JSON data */
+  Scheduling.fromJson(core.Map json) {
+    if (json.containsKey("automaticRestart")) {
+      automaticRestart = json["automaticRestart"];
+    }
+    if (json.containsKey("onHostMaintenance")) {
+      onHostMaintenance = json["onHostMaintenance"];
+    }
+  }
+
+  /** Create JSON Object for Scheduling */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (automaticRestart != null) {
+      output["automaticRestart"] = automaticRestart;
+    }
+    if (onHostMaintenance != null) {
+      output["onHostMaintenance"] = onHostMaintenance;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of Scheduling */
   core.String toString() => JSON.encode(this.toJson());
 
 }

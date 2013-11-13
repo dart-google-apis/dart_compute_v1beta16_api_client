@@ -14,7 +14,7 @@ class AddressesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -182,7 +182,7 @@ class AddressesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -237,7 +237,7 @@ class DisksResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -450,7 +450,7 @@ class DisksResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -614,7 +614,7 @@ class FirewallsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -745,7 +745,7 @@ class ForwardingRulesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -913,7 +913,7 @@ class ForwardingRulesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -1011,7 +1011,7 @@ class GlobalOperationsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -1129,7 +1129,7 @@ class GlobalOperationsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -1291,7 +1291,7 @@ class HttpHealthChecksResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -1570,7 +1570,7 @@ class ImagesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -1669,7 +1669,7 @@ class InstancesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2015,7 +2015,7 @@ class InstancesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2140,6 +2140,49 @@ class InstancesResource_ {
   }
 
   /**
+   * Sets an instance's scheduling options.
+   *
+   * [request] - Scheduling to send in this request
+   *
+   * [project] - Project name.
+   *
+   * [zone] - Name of the zone scoping this request.
+   *
+   * [instance] - Instance name.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<Operation> setScheduling(Scheduling request, core.String project, core.String zone, core.String instance, {core.Map optParams}) {
+    var url = "{project}/zones/{zone}/instances/{instance}/setScheduling";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (instance == null) paramErrors.add("instance is required");
+    if (instance != null) urlParams["instance"] = instance;
+    if (project == null) paramErrors.add("project is required");
+    if (project != null) urlParams["project"] = project;
+    if (zone == null) paramErrors.add("zone is required");
+    if (zone != null) urlParams["zone"] = zone;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new Operation.fromJson(data));
+  }
+
+  /**
    * Sets tags for the specified instance to the data included in the request.
    *
    * [request] - Tags to send in this request
@@ -2234,7 +2277,7 @@ class KernelsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2287,7 +2330,7 @@ class MachineTypesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2375,7 +2418,7 @@ class MachineTypesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2539,7 +2582,7 @@ class NetworksResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2751,7 +2794,7 @@ class RegionOperationsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -2843,7 +2886,7 @@ class RegionsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3005,7 +3048,7 @@ class RoutesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3132,7 +3175,7 @@ class SnapshotsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3271,7 +3314,7 @@ class TargetPoolsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3482,7 +3525,7 @@ class TargetPoolsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3752,7 +3795,7 @@ class ZoneOperationsResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500
@@ -3844,7 +3887,7 @@ class ZonesResource_ {
    *
    * [filter] - Optional. Filter expression for filtering listed resources.
    *
-   * [maxResults] - Optional. Maximum count of results to be returned. Maximum and default value is 100.
+   * [maxResults] - Optional. Maximum count of results to be returned. Maximum value is 500 and default value is 100.
    *   Default: 100
    *   Minimum: 0
    *   Maximum: 500

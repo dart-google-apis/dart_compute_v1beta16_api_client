@@ -14,7 +14,7 @@ Adding dependency to pubspec.yaml
 
 ```
   dependencies:
-    google_compute_v1beta16_api: '>=0.4.1'
+    google_compute_v1beta16_api: '>=0.4.2'
 ```
 
 For web applications:
@@ -29,13 +29,13 @@ For console application:
   import "package:google_compute_v1beta16_api/compute_v1beta16_api_console.dart" as computeclient;
 ```
 
-Working with out authentication the following constructor can be called:
+Working without authentication the following constructor can be called:
 
 ```
   var compute = new computeclient.Compute();
 ```
 
-Working with authentication then create a new `GoogleOAuth2` object and pass it to the constructor:
+To use authentication create a new `GoogleOAuth2` object and pass it to the constructor:
 
 
 ```
