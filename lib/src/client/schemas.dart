@@ -245,7 +245,7 @@ class AddressList {
   /** A token used to continue a truncated list request (output only). */
   core.String nextPageToken;
 
-  /** Server defined URL for this resource (output only). */
+  /** Server defined URL for the resource (output only). */
   core.String selfLink;
 
   /** Create new AddressList from JSON data */
@@ -591,6 +591,12 @@ class Disk {
   /** Size of the persistent disk, specified in GB. This parameter is optional when creating a disk from a disk image or a snapshot, otherwise it is required. */
   core.int sizeGb;
 
+  /** The source image used to create this disk. Once the source image has been deleted from the system, this field will not be set, even if an image with the same name has been re-created. */
+  core.String sourceImage;
+
+  /** The 'id' value of the image used to create this disk. This value may be used to determine whether the disk was created from the current or a previous instance of a given image. */
+  core.String sourceImageId;
+
   /** The source snapshot used to create this disk. Once the source snapshot has been deleted from the system, this field will be cleared, and will not be set even if a snapshot with the same name has been re-created. */
   core.String sourceSnapshot;
 
@@ -628,6 +634,12 @@ class Disk {
     }
     if (json.containsKey("sizeGb")) {
       sizeGb = (json["sizeGb"] is core.String) ? core.int.parse(json["sizeGb"]) : json["sizeGb"];
+    }
+    if (json.containsKey("sourceImage")) {
+      sourceImage = json["sourceImage"];
+    }
+    if (json.containsKey("sourceImageId")) {
+      sourceImageId = json["sourceImageId"];
     }
     if (json.containsKey("sourceSnapshot")) {
       sourceSnapshot = json["sourceSnapshot"];
@@ -670,6 +682,12 @@ class Disk {
     }
     if (sizeGb != null) {
       output["sizeGb"] = sizeGb;
+    }
+    if (sourceImage != null) {
+      output["sourceImage"] = sourceImage;
+    }
+    if (sourceImageId != null) {
+      output["sourceImageId"] = sourceImageId;
     }
     if (sourceSnapshot != null) {
       output["sourceSnapshot"] = sourceSnapshot;
